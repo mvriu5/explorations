@@ -1,21 +1,49 @@
-import React from "react";
-import {Map} from "lucide-react";
+"use client";
+
+import React, {useState} from "react";
+import {Header} from "@/components/ui/Header";
+import {ComponentTab, Cursor} from "@/components/ui/ComponentTab";
+import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
 
 export default function Home() {
+    const [selectedComponent, setSelectedComponent] = useState<number | null>(null);
+    const [position, setPosition] = useState({ left: 0, top: 0, width: 0, opacity: 0 });
+    const router = useRouter();
+
+    const components = [
+        { key: 1, title: "Scheduler", description: "Create a schedule by writing natural language", date: "2024", link: "scheduler"},
+        { key: 2, title: "Component 2", description: "This is a description", date: "2024", link: null},
+    ];
+
+
     return (
-        <div className={"flex flex-col space-y-4 p-4 lg:px-[25%] md:py-32 md:px-[15%]"}>
+        <div className={"flex flex-col p-4 lg:px-[25%] md:py-32 md:px-[15%]"}>
+            <Header/>
 
-            <div className={"flex flex-row justify-between items-center border-b border-zinc-200 pb-4"}>
-                <div className={"flex flex-row space-x-4 items-center"}>
-                    <Map size={20}/>
-                    <div className={"flex flex-col space-y-1"}>
-                        <span className={"text-lg text-zinc-700 font-medium"}>Griller</span>
-                        <span className={"hidden sm:block text-sm text-zinc-500"}>A fully customizable React Toast Component</span>
-                    </div>
+            <motion.div
+                initial={{opacity: 0, filter: "blur(10px)", y: 100}}
+                animate={{opacity: 1, filter: "blur(0px)", y: 0}}
+                transition={{duration: 1}}
+            >
+                <div className={"flex flex-col space-y-4 mt-16"}
+                     onMouseLeave={() => setPosition({ left: position.left, top: position.top, width: position.width, opacity: 0 })}
+                >
+                    {components.map((component) => (
+                        <ComponentTab
+                            key={component.key}
+                            title={component.title}
+                            description={component.description}
+                            date={component.date}
+                            onClick={() => component.link && router.push(component.link)}
+                            onMouseEnter={() => setSelectedComponent(component.key)}
+                            onMouseLeave={() => setSelectedComponent(null)}
+                            setPosition={setPosition}
+                        />
+                    ))}
                 </div>
-
-                <span>Made by mvriu5</span>
-            </div>
+                <Cursor position={position}/>
+            </motion.div>
         </div>
     );
 }
