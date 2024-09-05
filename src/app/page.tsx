@@ -1,6 +1,6 @@
 "use client";
 
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Header} from "@/components/ui/Header";
 import {ComponentTab, Cursor} from "@/components/ui/ComponentTab";
 import { useRouter } from "next/navigation";
@@ -15,7 +15,6 @@ export default function Home() {
         { key: 1, title: "Scheduler", description: "Create a schedule by writing natural language", date: "2024", link: "scheduler"},
         { key: 2, title: "Component 2", description: "This is a description", date: "2024", link: null},
     ];
-
 
     return (
         <div className={"flex flex-col p-4 lg:px-[25%] md:py-32 md:px-[15%]"}>

@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
-import React, {HTMLAttributes, useRef} from "react";
+import React, {HTMLAttributes, useEffect, useRef, useState} from "react";
 import {cn} from "@/lib/cn";
+import Particles from "@/components/ui/Particles";
+import {useTheme} from "next-themes";
 
 interface ComponentTabProps extends HTMLAttributes<HTMLDivElement>{
     title: string;
@@ -15,7 +17,7 @@ export const ComponentTab: React.FC<ComponentTabProps> = ({ title, description, 
 
     return (
         <motion.div
-            className={"relative z-50 group w-max flex flex-row justify-between items-center space-x-12 rounded-lg px-4 py-2 cursor-pointer font-medium"}
+            className={"relative z-50 group w-max flex flex-row justify-between items-center space-x-12 rounded-lg pl-4 pr-20 py-2 cursor-pointer font-medium"}
             ref={ref}
             onClick={onClick}
             initial={{opacity: 0, filter: 'blur(10px)', y: -30}}
@@ -36,7 +38,7 @@ export const ComponentTab: React.FC<ComponentTabProps> = ({ title, description, 
         >
             <div className={"flex flex-col font-medium"}>
                 <span className={"text-sm text-zinc-800 dark:text-zinc-300"}>{title}</span>
-                <span className={"text-xs text-zinc-500 dark:text-zinc-400"}>{description + " • " + date}</span>
+                <span className={"text-xs text-zinc-500 dark:text-zinc-400"}>{`${description} • ${date}`}</span>
             </div>
         </motion.div>
     );
@@ -48,7 +50,13 @@ export const Cursor: React.FC<{ position: {left: number, top: number, width: num
     return (
         <motion.div
             animate={{...position}}
-            className={cn("absolute z-40 h-12 rounded-md bg-zinc-200 dark:bg-zinc-900")}
-        />
+            className={cn("absolute z-40 h-12 rounded-md bg-zinc-200 dark:bg-zinc-900 flex justify-end overflow-hidden")}
+        >
+            <Particles
+                className="w-24"
+                quantity={20}
+
+            />
+        </motion.div>
     );
 };
