@@ -1,14 +1,15 @@
 "use client";
 
-import {ArrowLeftFromLine, Code, Moon, RotateCcw, Sun} from "lucide-react";
+import {ArrowLeftFromLine, Code, RotateCcw} from "lucide-react";
 import {motion} from "framer-motion";
 import React, {useEffect, useState} from "react";
 import {useTheme} from "next-themes";
 import {useRouter} from "next/navigation";
 import {useHotkeys} from "react-hotkeys-hook";
-import { useTooltip } from "./TooltipProvider";
+import {useTooltip} from "./TooltipProvider";
 import {TooltipAnchor} from "@/components/ui/Tooltip";
 import Link from "next/link";
+import {ThemeSwitcher} from "@/components/ui/ThemeSwitcher";
 
 interface ComponentHeaderProps {
     title: string;
@@ -81,23 +82,7 @@ export const ComponentHeader: React.FC<ComponentHeaderProps> = ({title, link}) =
                 >
                     <RotateCcw size={20}/>
                 </button>
-
-                <button className={"p-2 rounded-md hover:bg-zinc-200 dark:hover:bg-zinc-800 hover:text-zinc-800 hover:dark:text-white cursor-pointer"}
-                        type={"button"}
-                        onClick={() => {
-                            setTheme(theme === "dark" ? "light" : "dark");
-                            removeTooltip();
-                        }}
-                        onMouseEnter={(e) => addTooltip({
-                            message: theme === "dark" ? "Switch to light mode" : "Switch to dark mode",
-                            anchor: "tc" as TooltipAnchor,
-                            trigger: e.currentTarget.getBoundingClientRect(),
-                            shortcut: "Ctrl + M"
-                        })}
-                        onMouseLeave={removeTooltip}
-                >
-                    {mounted && theme === "dark" ? <Moon size={20}/> : <Sun size={20}/>}
-                </button>
+                <ThemeSwitcher/>
             </div>
 
         </motion.div>

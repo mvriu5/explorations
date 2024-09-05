@@ -133,7 +133,7 @@ const Tooltip: React.FC<TooltipProps & { lastTooltipTimestamp: number | null }> 
         <>
             {isVisible && (
                 <div
-                    className={"absolute z-50 w-max flex flex-row space-x-4 items-center px-2 py-1 rounded-md shadow-lg text-xs dark:text-xs font-normal " +
+                    className={"absolute z-50 w-max flex flex-row space-x-4 items-center px-2 py-1 rounded-md shadow-xl dark:shadow-white/20 dark:shadow-md text-xs dark:text-xs font-normal " +
                         "bg-zinc-900 dark:bg-zinc-200 border border-zinc-800 dark:border-zinc-300"
                     }
                     style={{

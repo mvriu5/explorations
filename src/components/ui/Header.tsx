@@ -2,12 +2,14 @@
 
 import {motion} from "framer-motion";
 // biome-ignore lint/suspicious/noShadowRestrictedNames: <explanation>
-import {Map, Moon, Sun} from "lucide-react";
-import { useTheme } from "next-themes";
+import {Map} from "lucide-react";
+import {useTheme} from "next-themes";
 import React, {useEffect, useState} from "react";
 import {useTooltip} from "@/components/ui/TooltipProvider";
 import {TooltipAnchor} from "@/components/ui/Tooltip";
 import {useHotkeys} from "react-hotkeys-hook";
+import {ThemeSwitcher} from "@/components/ui/ThemeSwitcher";
+import Link from "next/link";
 
 export const Header = () => {
     const [mounted, setMounted] = useState(false)
@@ -34,39 +36,27 @@ export const Header = () => {
                 <div className={"flex flex-row items-center space-x-1"}>
                     <span className={"text-lg"}>Explorations</span>
                     <span className={"text-sm text-zinc-500 pl-2"}>by</span>
-                    <motion.span
-                        className={"text-sm text-zinc-500 hover:text-zinc-800 dark:hover:text-white hover:underline cursor-pointer"}
+
+                    <motion.div
                         whileHover={{y: -4}}
                         whileTap={{y: -4}}
                         onMouseEnter={(e) => addTooltip({
-                            message: "Go to ahsmus.com",
+                            message: "Go to my portfolio",
                             anchor: "tc" as TooltipAnchor,
                             trigger: e.currentTarget.getBoundingClientRect()
                         })}
                         onMouseLeave={removeTooltip}
+                        className={"text-sm text-zinc-500 hover:text-zinc-800 dark:hover:text-white hover:underline cursor-pointer"}
                     >
-                        mvriu5
-                    </motion.span>
+                        <Link href={"https://ahsmus.com"} passHref>
+                            <span>mvriu5</span>
+                        </Link>
+                    </motion.div>
+
                 </div>
             </div>
 
-            <button
-                className={"p-2 rounded-md hover:bg-zinc-200 dark:hover:bg-zinc-800 text-zinc-500 dark:text-zinc-400 hover:text-zinc-800 hover:dark:text-white cursor-pointer"}
-                type={"button"}
-                onClick={() => {
-                    setTheme(theme === "dark" ? "light" : "dark");
-                    removeTooltip();
-                }}
-                onMouseEnter={(e) => addTooltip({
-                    message: theme === "dark" ? "Switch to light mode" : "Switch to dark mode",
-                    anchor: "tc" as TooltipAnchor,
-                    trigger: e.currentTarget.getBoundingClientRect(),
-                    shortcut: "Ctrl + M"
-                })}
-                onMouseLeave={removeTooltip}
-            >
-                {mounted && theme === "dark" ? <Moon size={20}/> : <Sun size={20}/>}
-            </button>
+            <ThemeSwitcher/>
         </motion.div>
     );
 }
