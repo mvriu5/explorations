@@ -7,7 +7,7 @@ export default function SchedulerPage() {
 
     return (
         <div className={"flex flex-col p-4 space-y-16"}>
-            <ComponentHeader title={"Scheduler"} link={"https://github.com/mvriu5/explorations/blob/master/src/components/explorations/scheduler.tsx"}/>
+            <ComponentHeader title={"Scheduler"} link={"https://github.com/mvriu5/explorations/blob/master/src/components/explorations/Scheduler.tsx"}/>
             <ComponentBox description={"Select a time or a timespan whenever you want by just typing natural language."}>
                 <Scheduler
                     label={"When is your meeting?"}
