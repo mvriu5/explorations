@@ -41,7 +41,7 @@ export const ComponentHeader: React.FC<ComponentHeaderProps> = ({title, link}) =
                         type={"button"}
                         onClick={() => {
                             removeTooltip();
-                            router.back();
+                            router.replace("/");
                         }}
                         onMouseEnter={(e) => addTooltip({
                             message: "Go back",
