@@ -13,7 +13,7 @@ export default function Home() {
 
     const components = [
         { key: 1, title: "Scheduler", description: "Create a schedule by writing natural language", date: "2024", link: "scheduler"},
-        { key: 2, title: "Component 2", description: "This is a description", date: "2024", link: null},
+        { key: 2, title: "Dynamic Button", description: "A button that questions your decision ", date: "2024", link: "dynamicbutton"},
     ];
 
     return (

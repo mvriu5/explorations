@@ -17,7 +17,7 @@ export const ComponentBox: React.FC<ComponentBoxProps> = ({description, children
             transition={{duration: 1}}
         >
             {description && <span className={"text-sm text-zinc-500 dark:text-zinc-400"}>{description}</span>}
-            <div className={"w-full h-[600px] bg-zinc-200 dark:bg-black rounded-md border border-zinc-300 dark:border-zinc-800 flex justify-center items-center"}>
+            <div className={"w-full h-[600px] bg-[#f7f7f8] dark:bg-black rounded-md border border-zinc-300 dark:border-zinc-800 flex justify-center items-center"}>
                 {children}
             </div>
         </motion.div>
